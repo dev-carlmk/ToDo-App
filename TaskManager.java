@@ -53,5 +53,22 @@ public class TaskManager{
         }
     }
 
+    //Complete Task
+    public void completeTask(int id){
+        boolean complete = false;
+
+        for(Task t: tasks){
+            if(t.id == id){
+                t.completed = true;
+                System.out.println("Task Completed!");
+                complete = true;
+                break;
+            }
+        }
+        if(!complete){
+            System.out.println("Task not found!");
+        }
+    }
+
 
 }
