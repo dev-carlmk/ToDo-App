@@ -40,4 +40,18 @@ public class TaskManager{
             System.out.println("Tasks not found!");
         }
     }
+
+    // Search Task
+    public void searchTask(String title){
+        boolean found = false;
+        for (Task t: tasks){
+            t.displayTask();
+            found = true;
+        }
+        if(!found){
+            System.out.println("Task not found !");
+        }
+    }
+
+
 }
