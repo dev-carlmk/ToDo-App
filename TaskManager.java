@@ -23,4 +23,21 @@ public class TaskManager{
     public void countTasks(){
         System.out.println("Total Asks: " + tasks.size());
     }
+
+    // Delete Tasks
+    public void deleteTask(int id){
+        boolean removed = false;
+        
+        for(int i = 0; i < tasks.size(); i++){
+            if(tasks.get(i).id == id){
+                tasks.remove(i);
+                System.out.println("Tasks deleted successfully !");
+                removed = true;
+                break;
+            }
+        }
+        if(!removed){
+            System.out.println("Tasks not found!");
+        }
+    }
 }
