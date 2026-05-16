@@ -1,23 +1,29 @@
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 public class TaskManager{
-    ArrayList<Task>tasks = new ArrayList<>();
 
     // Add Task
     public void addTask(Task task){
-        tasks.add(task);
-        System.out.println("Task added successfully!");
-    }
+        String sql = "INSERT INTO tasks VALUES(?,?,?)";
+        try(
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+        ) {
+            pst.setInt(1, task.id);
+            pst.setString(2, task.title);
+            pst.setBoolean(3, task.completed);
 
-    // View Task
-    public void viewTasks(){
-        if(tasks.isEmpty()){
-            System.out.println("No tasks found!");
-        }else{
-            for(Task t: tasks){
-                t.displayTask();
-            }
+            pst.executeUpdate();
+            System.out.println("Task Added!");
+        
+        } catch (Exception e){
+            System.out.println("Add Error: " + e.getMessage());
         }
     }
+
+
 
     //Count Tasks
     public void countTasks(){
