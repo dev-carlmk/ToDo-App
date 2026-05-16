@@ -5,11 +5,11 @@ public class Task {
     boolean completed;
 
     // Constructor
-    public Task(int id, String title) {
+    public Task(int id, String title, boolean completed) {
 
         this.id = id;
         this.title = title;
-        this.completed = false;
+        this.completed = completed;
     }
 
     // Display Task
