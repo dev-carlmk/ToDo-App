@@ -21,7 +21,7 @@ public class TaskManager{
 
     //Count Tasks
     public void countTasks(){
-        System.out.println("Total Asks: " + tasks.size());
+        System.out.println("Total Tasks: " + tasks.size());
     }
 
     // Delete Tasks
@@ -46,6 +46,7 @@ public class TaskManager{
         boolean found = false;
         for (Task t: tasks){
             t.displayTask();
+            System.out.println("Task Found!");
             found = true;
         }
         if(!found){
@@ -60,8 +61,8 @@ public class TaskManager{
         for(Task t: tasks){
             if(t.id == id){
                 t.completed = true;
-                System.out.println("Task Completed!");
                 complete = true;
+                System.out.println("Task Completed!");
                 break;
             }
         }
