@@ -85,18 +85,22 @@ public class TaskManager{
 
     //Complete Task
     public void completeTask(int id){
-        boolean complete = false;
+        String sql = "UPDATE tasks SET completed = true WHERE id = ?";
+        try(
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+        ) {
+            pst.setInt(1, id);
+            int rows = pst.executeUpdate();
 
-        for(Task t: tasks){
-            if(t.id == id){
-                t.completed = true;
-                complete = true;
-                System.out.println("Task Completed!");
-                break;
+            if(rows > 0){
+                System.out.println("Task Completed !");
+            } else {
+                System.out.println("Task not found !");
             }
-        }
-        if(!complete){
-            System.out.println("Task not found!");
+        
+        } catch (Exception e){
+            System.out.println("Complete Error: " + e.getMessage());
         }
     }
 
